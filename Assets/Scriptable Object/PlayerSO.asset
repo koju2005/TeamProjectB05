@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ca0230efc03d04ab273aac28a19350, type: 3}
+  m_Name: PlayerSO
+  m_EditorClassIdentifier: 
+  PlayerHP: 100
+  PlayerSpeed: 5
+  PlayerHunger: 400
+  PlayerStamina: 100
+  PlayerThirst: 100
+  PlayerMaxHP: 100
+  PlayerMaxHunger: 500
+  PlayerMaxStamina: 200
+  PlayerMaxThirst: 250
+  deCayRate: 5
+  regenRate: 20
+  noHungerHealthDecay: 50
