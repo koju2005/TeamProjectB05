@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -30,7 +30,7 @@ public class Monster : MonoBehaviour
     public float minWanderDistance;
     public float maxWanderDistance;
     public float minWanderwaitTime;
-    public float maxWanderWaitTiem;
+    public float maxWanderWaitTime;
 
     [Header("Combat")]
     public int damage;
@@ -54,15 +54,72 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
-        SetStateGraph(AIState.Wandering);
+        SetState(AIState.Wandering);
     }
 
-    //private void Update()
+    private void Update()
+    {
+        //TODO
+        //playerDistance = Vector3.Distance(transform.position, PlayerController.instance.transform.position);
+
+        animator.SetBool("Moving", aiState != AIState.Idle);
+
+        switch(aiState)
+        {
+            case AIState.Idle: PassiveUpdate(); break;
+            case AIState.Wandering: PassiveUpdate(); break;
+            //case AIState.Attacking: AttackingUpdate(); break;
+            case AIState.Fleeing: FleeingUpdate(); break;
+        }
+    }
+
+    private void FleeingUpdate()
+    {
+        
+    }
+
+    //private void AttackingUpdate()
     //{
-    //    playerDistance = Vector3.Distance(transform.position, Player);
+    //    if(playerDistance > attackDistance || !IsPlayerInFieldOfView())
+    //    {
+    //        agent.isStopped = false;
+    //        NavMeshPath path = new NavMeshPath();
+    //        if(agent.CalculatePath(PlayerController.instance.transform.position, path))
+    //        {
+    //            agent.SetDestination(PlayerController.instance.transform.postion);
+    //        }
+    //        else
+    //        {
+    //            SetState(AIState.Fleeing);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        agent.isStopped =true;
+    //        if(Time.time - lastAttackTime > attackRate)
+    //        {
+    //            lastAttackTime = Time.time;
+    //            PlayerController.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+    //            animator.speed = 1;
+    //            animator.SetTrigger("Attack");
+    //        }
+    //    }
     //}
 
-    private void SetStateGraph(AIState newState)
+    private void PassiveUpdate()
+    {
+        if(aiState == AIState.Wandering && agent.remainingDistance < 0.1f)
+        {
+            SetState(AIState.Idle);
+            Invoke("WanderToNewLocation", Random.Range(minWanderwaitTime, maxWanderWaitTime));
+        }
+        if(playerDistance < detectDistance)
+        {
+            SetState(AIState.Attacking);
+        }
+    }
+
+    private void SetState(AIState newState)
     {
         aiState = newState;
         switch(aiState)
