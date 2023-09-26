@@ -28,10 +28,12 @@ public class Player : MonoBehaviour
 
     private bool IsRun = false;
     private PlayerCondition playerCondition;
-    private Rigidbody _rigidbody;    private CapsuleCollider _capsuleCollider;
+    private Rigidbody _rigidbody; private CapsuleCollider _capsuleCollider;
+    public static Player instance;
     public PlayerSO playerSO;
     private void Awake()
     {
+        instance = this;
         _rigidbody = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         playerSO = GetComponent<Player>().playerSO;
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour
     }
     private void RunStamina()
     {
-        if(playerCondition.stamina.curValue <= 1)
+        if (playerCondition.stamina.curValue <= 1)
         {
             curMoveMentInput = curMovevector;
         }
@@ -93,11 +95,11 @@ public class Player : MonoBehaviour
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started)
         {
             curMovevector = context.ReadValue<Vector2>();
         }
-       else if (context.phase == InputActionPhase.Performed)
+        else if (context.phase == InputActionPhase.Performed)
         {
             curMoveMentInput = context.ReadValue<Vector2>();
         }
@@ -108,16 +110,16 @@ public class Player : MonoBehaviour
     }
     public void OnRunInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed &&IsRun == false && playerCondition.stamina.curValue > 0f)
+        if (context.phase == InputActionPhase.Performed && IsRun == false && playerCondition.stamina.curValue > 0f)
         {
             curMoveMentInput *= 2;
-            
+
             IsRun = true;
         }
-        else if (context.phase == InputActionPhase.Canceled && IsRun==true)
+        else if (context.phase == InputActionPhase.Canceled && IsRun == true)
         {
-            curMoveMentInput =curMovevector;
-            IsRun=false;
+            curMoveMentInput = curMovevector;
+            IsRun = false;
         }
     }
     public void OnWalkInput(InputAction.CallbackContext context)
@@ -136,7 +138,7 @@ public class Player : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             if (IsGrounded())
-            _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
+                _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
         }
     }
     public void OnCrouchInput(InputAction.CallbackContext context)
@@ -163,11 +165,11 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i],0.1f , groundLayerMask))
+            if (Physics.Raycast(rays[i], 0.1f, groundLayerMask))
             {
-                 return true;
+                return true;
             }
-         }
+        }
         return false;
     }
 }

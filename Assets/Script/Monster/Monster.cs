@@ -1,10 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+
 
 public enum AIState
 {
@@ -13,7 +10,7 @@ public enum AIState
     Attacking,
     Fleeing
 }
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IDamagable
 {
     [Header("Stats")]
     public int health;
@@ -60,7 +57,7 @@ public class Monster : MonoBehaviour
     private void Update()
     {
         //TODO
-        //playerDistance = Vector3.Distance(transform.position, PlayerController.instance.transform.position);
+        playerDistance = Vector3.Distance(transform.position, Player.instance.transform.position);
 
         animator.SetBool("Moving", aiState != AIState.Idle);
 
@@ -68,43 +65,58 @@ public class Monster : MonoBehaviour
         {
             case AIState.Idle: PassiveUpdate(); break;
             case AIState.Wandering: PassiveUpdate(); break;
-            //case AIState.Attacking: AttackingUpdate(); break;
+            case AIState.Attacking: AttackingUpdate(); break;
             case AIState.Fleeing: FleeingUpdate(); break;
         }
     }
 
     private void FleeingUpdate()
     {
-
+        if (agent.remainingDistance < 0.1f)
+        {
+            agent.SetDestination(GetFleeLocation());
+        }
+        else
+        {
+            SetState(AIState.Wandering);
+        }
     }
 
-    //private void AttackingUpdate()
-    //{
-    //    if(playerDistance > attackDistance || !IsPlayerInFieldOfView())
-    //    {
-    //        agent.isStopped = false;
-    //        NavMeshPath path = new NavMeshPath();
-    //        if(agent.CalculatePath(PlayerController.instance.transform.position, path))
-    //        {
-    //            agent.SetDestination(PlayerController.instance.transform.postion);
-    //        }
-    //        else
-    //        {
-    //            SetState(AIState.Fleeing);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        agent.isStopped =true;
-    //        if(Time.time - lastAttackTime > attackRate)
-    //        {
-    //            lastAttackTime = Time.time;
-    //            PlayerController.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
-    //            animator.speed = 1;
-    //            animator.SetTrigger("Attack");
-    //        }
-    //    }
-    //}
+    private void AttackingUpdate()
+    {
+        if (playerDistance > attackDistance || !IsPlayerInFieldOfView())
+        {
+            agent.isStopped = false;
+            NavMeshPath path = new NavMeshPath();
+            if (agent.CalculatePath(Player.instance.transform.position, path)) // 더 좋은 코드로 바꿔보기
+            {
+                agent.SetDestination(Player.instance.transform.position);
+            }
+            else
+            {
+                SetState(AIState.Fleeing);
+            }
+
+        }
+        else
+        {
+            agent.isStopped = true;
+            if (Time.time - lastAttackTime > attackRate)
+            {
+                lastAttackTime = Time.time;
+                Player.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+                animator.speed = 1;
+                animator.SetTrigger("Attack");
+            }
+        }
+    }
+
+    bool IsPlayerInFieldOfView()
+    {
+        Vector3 directionToPlayer = Player.instance.transform.position - transform.position;
+        float angle = Vector3.Angle(transform.forward, directionToPlayer);
+        return angle < fieldOfView * 0.5f;
+    }
 
     private void PassiveUpdate()
     {
@@ -151,6 +163,75 @@ public class Monster : MonoBehaviour
         }
         animator.speed = agent.speed / walkSpeed;
     }
+    void WanderToNewLocation()
+    {
+        if (aiState != AIState.Idle)
+        {
+            return;
+        }
+        SetState(AIState.Wandering);
+        agent.SetDestination(GetWanderLocation());
+    }
+    Vector3 GetWanderLocation()
+    {
+        NavMeshHit hit;
+        NavMesh.SamplePosition(transform.position + (Random.onUnitSphere) * Random.Range(minWanderDistance, maxWanderDistance), out hit, maxWanderDistance, NavMesh.AllAreas);
+
+        int i = 0;
+        while (Vector3.Distance(transform.position, hit.position) < detectDistance)
+        {
+            NavMesh.SamplePosition(transform.position + (Random.onUnitSphere) * Random.Range(minWanderDistance, maxWanderDistance), out hit, maxWanderDistance, NavMesh.AllAreas);
+
+            i++;
+            if (i == 30)
+                break;
+        }
+        return hit.position;
+    }
+    Vector3 GetFleeLocation()
+    {
+        NavMeshHit hit;
+        NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * safeDistance), out hit, maxWanderDistance, NavMesh.AllAreas);
+
+        int i = 0;
+        while (GetDestinationAngle(hit.position) > 90 || playerDistance < safeDistance)
+        {
+            NavMesh.SamplePosition(transform.position + (Random.onUnitSphere) * Random.Range(minWanderDistance, maxWanderDistance), out hit, maxWanderDistance, NavMesh.AllAreas);
+            i++;
+            if (i == 30)
+                break;
+        }
+        return hit.position;
+    }
+    float GetDestinationAngle(Vector3 targetPos)
+    {
+        return Vector3.Angle(transform.position - Player.instance.transform.position, transform.position + targetPos);
+    }
+
+    public void TakePhysicalDamage(int damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0)
+            Die();
+        StartCoroutine(DamageFlash());
+    }
+
+    void Die()
+    {
+        //dropOnDeath는 선택으로 고민중
+        //for(int x =0; x< dropOnDeath.Length; x++)
+        //{
+        //    Instantiate(dropOnDeath[x]. dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
+        //}
+        Destroy(gameObject);
+
+    }
+    IEnumerator DamageFlash()
+    {
+        for (int x = 0; x < meshRenderers.Length; x++)
+            meshRenderers[x].material.color = new Color(1.0f, 0.6f, 0.6f);
+        yield return new WaitForSeconds(0.1f);
+        for (int x = 0; x < meshRenderers.Length; x++)
+            meshRenderers[x].material.color = Color.white;
+    }
 }
-
-

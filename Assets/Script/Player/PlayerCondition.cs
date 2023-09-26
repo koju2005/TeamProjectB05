@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.Events;
 using UnityEngine.UI;
+
+public interface IDamagable
+{
+    void TakePhysicalDamage(int damageAmount);
+}
 [System.Serializable]
 public class Condition
 {
@@ -15,12 +21,12 @@ public class Condition
     public void Add(float val)
     {
         curValue = Mathf.Min(curValue + val, maxValue);
-    
+
     }
 
     public void Subtract(float val)
     {
-        curValue = Mathf.Max(curValue-val , 0.0f);
+        curValue = Mathf.Max(curValue - val, 0.0f);
     }
 
     public float GetPercentage()
@@ -29,13 +35,15 @@ public class Condition
     }
 }
 
-public class PlayerCondition : MonoBehaviour
+public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public Condition health;
     public Condition stamina;
     public Condition hunger;
     public Condition thirsty;
     public PlayerSO playerSO;
+
+    public UnityEvent onTakeDamage;
 
     private void Awake()
     {
@@ -52,7 +60,7 @@ public class PlayerCondition : MonoBehaviour
         stamina.maxValue = playerSO.PlayerMaxStamina;
         thirsty.curValue = playerSO.PlayerThirst;
         thirsty.maxValue = playerSO.PlayerMaxThirst;
-        
+
     }
 
     private void Update()
@@ -66,7 +74,7 @@ public class PlayerCondition : MonoBehaviour
         {
             health.Subtract(playerSO.noHungerHealthDecay * Time.deltaTime);
         }
-        if(health.curValue == 0.0f)
+        if (health.curValue == 0.0f)
         {
             Die();
         }
@@ -89,4 +97,11 @@ public class PlayerCondition : MonoBehaviour
     {
 
     }
+    public void TakePhysicalDamage(int damageAmount)
+    {
+        health.Subtract(damageAmount);
+        onTakeDamage?.Invoke();
+    }
+
+
 }
