@@ -17,5 +17,5 @@ MonoBehaviour:
   type: 0
   icon: {fileID: 0}
   dropPrefab: {fileID: 0}
-  canStack: 0
-  maxStackAmount: 0
+  canStack: 1
+  maxStackAmount: 10
