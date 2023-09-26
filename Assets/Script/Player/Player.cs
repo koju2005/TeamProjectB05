@@ -29,9 +29,11 @@ public class Player : MonoBehaviour
     private bool IsRun = false;
     private PlayerCondition playerCondition;
     private Rigidbody _rigidbody;    private CapsuleCollider _capsuleCollider;
+    public static Player instance;
     public PlayerSO playerSO;
     private void Awake()
     {
+        instance = this;
         _rigidbody = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         playerSO = GetComponent<Player>().playerSO;

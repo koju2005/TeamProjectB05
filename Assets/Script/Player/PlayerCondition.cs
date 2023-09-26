@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.Events;
 using UnityEngine.UI;
+
+public interface IDamagable
+{
+    void TakePhysicalDamage(int damageAmount);
+}
 [System.Serializable]
 public class Condition
 {
@@ -29,13 +35,15 @@ public class Condition
     }
 }
 
-public class PlayerCondition : MonoBehaviour
+public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public Condition health;
     public Condition stamina;
     public Condition hunger;
     public Condition thirsty;
     public PlayerSO playerSO;
+
+    public UnityEvent onTakeDamage;
 
     private void Awake()
     {
@@ -89,4 +97,11 @@ public class PlayerCondition : MonoBehaviour
     {
 
     }
+    public void TakePhysicalDamage(int damageAmount)
+    {
+        health.Subtract(damageAmount);
+        onTakeDamage?.Invoke();
+    }
+
+   
 }
