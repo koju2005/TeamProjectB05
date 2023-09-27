@@ -15,6 +15,7 @@ public class ItemObject : MonoBehaviour, IInteractable
     {
         Destroy(gameObject);
 
+    }
     public ItemObject()
     {
         item = null;
@@ -25,3 +26,4 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     }
 }
+
