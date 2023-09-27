@@ -14,5 +14,14 @@ public class ItemObject : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         Destroy(gameObject);
+
+    public ItemObject()
+    {
+        item = null;
+    }
+    public ItemObject(ItemData data)
+    {
+        item = data;
+
     }
 }
