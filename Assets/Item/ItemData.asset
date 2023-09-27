@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9760563e242b7f746bd72682d84f5568, type: 3}
-  m_Name: ItemWoodData
+  m_Name: ItemData
   m_EditorClassIdentifier: 
-  displayName: "\uB098\uBB34"
-  description: "\uBB34\uC5B8\uAC00\uB97C \uB9CC\uB4E4 \uB54C \uC4F0\uB294 \uC7AC\uB8CC"
+  displayName: 
+  description: 
   type: 0
-  icon: {fileID: 21300000, guid: a5612e17f7779374da8564e7a11d823c, type: 3}
-  dropPrefab: {fileID: 7286933669525857817, guid: 2839596883fc764458f0604d21492715, type: 3}
-  canStack: 1
-  maxStackAmount: 3
+  icon: {fileID: 7482667652216324306, guid: 400a910b4a5e071438fedf03bf1aa757, type: 3}
+  dropPrefab: {fileID: 0}
+  canStack: 0
+  maxStackAmount: 0

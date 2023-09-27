@@ -3571,7 +3571,7 @@ MonoBehaviour:
     m_ActionId: bbfc95ff-62d3-40be-aead-901043955db0
     m_ActionName: Player/Look[/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: New control scheme
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -3625,6 +3625,20 @@ MonoBehaviour:
   lookSensitivity: 0.2
   canLook: 1
   playerSO: {fileID: 11400000, guid: a9cefb72bd584f346b2854c37c3c73f7, type: 2}
+  datas:
+  - {fileID: 11400000, guid: 417febc7c8f225a48af488c6d3b2ad37, type: 2}
+  - {fileID: 11400000, guid: 417febc7c8f225a48af488c6d3b2ad37, type: 2}
+  - {fileID: 11400000, guid: 417febc7c8f225a48af488c6d3b2ad37, type: 2}
+  - {fileID: 11400000, guid: 417febc7c8f225a48af488c6d3b2ad37, type: 2}
+  - {fileID: 11400000, guid: ae0f6849ed995e9459084a739c152f6c, type: 2}
+  - {fileID: 11400000, guid: ae0f6849ed995e9459084a739c152f6c, type: 2}
+  - {fileID: 11400000, guid: 82ad009febe6ced4ab517d1f44b4028d, type: 2}
+  - {fileID: 11400000, guid: 9b9f0a5bbb4b4ec4fb405347437ccb37, type: 2}
+  - {fileID: 11400000, guid: 9b9f0a5bbb4b4ec4fb405347437ccb37, type: 2}
+  - {fileID: 11400000, guid: 9b9f0a5bbb4b4ec4fb405347437ccb37, type: 2}
+  - {fileID: 11400000, guid: 9b9f0a5bbb4b4ec4fb405347437ccb37, type: 2}
+  - {fileID: 11400000, guid: 9b9f0a5bbb4b4ec4fb405347437ccb37, type: 2}
+  - {fileID: 11400000, guid: 9b9f0a5bbb4b4ec4fb405347437ccb37, type: 2}
 --- !u!136 &636693862
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9934,8 +9948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3121ec8a47a423e4eb954d708eb1af4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   slots: []
+  currentSlot:
+    itemObj: {fileID: 0}
+    quantity: 0
 --- !u!1001 &2095657646
 PrefabInstance:
   m_ObjectHideFlags: 0

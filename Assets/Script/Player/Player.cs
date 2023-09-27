@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
@@ -31,6 +32,13 @@ public class Player : MonoBehaviour
     private Rigidbody _rigidbody; private CapsuleCollider _capsuleCollider;
     public static Player instance;
     public PlayerSO playerSO;
+
+    private Inventory playerInventory;
+    public Inventory Inventory { get {  return playerInventory; } }
+
+    [SerializeField] public List<ItemData> datas;
+    private List<ItemSlot> items;
+
     private void Awake()
     {
         instance = this;
@@ -38,11 +46,29 @@ public class Player : MonoBehaviour
         _capsuleCollider = GetComponent<CapsuleCollider>();
         playerSO = GetComponent<Player>().playerSO;
         playerCondition = GetComponent<PlayerCondition>();
+
+        playerInventory = new Inventory(20);
+
+        items = new List<ItemSlot>();
+        foreach (var data in datas)
+        {
+            ItemSlot temp = new ItemSlot
+            {
+                itemObj = new ItemObject(data),
+                quantity = 1
+            };
+
+            items.Add(temp);
+        }
+
+        playerInventory.AddItems(items);
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+
     }
 
 

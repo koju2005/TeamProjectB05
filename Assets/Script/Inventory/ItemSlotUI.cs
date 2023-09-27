@@ -15,9 +15,10 @@ public class ItemSlotUI : MonoBehaviour
     private InventoryUI invenUI;
     private ItemData itemData;
 
-    private void Awake()
+    private void Start()
     {
-        //invenUI = UIManager.instance;
+        GameObject root = UIManager.instance.invenory;
+        invenUI = root.GetComponent<InventoryUI>();
     }
 
     private void OnEnable()
@@ -27,14 +28,16 @@ public class ItemSlotUI : MonoBehaviour
 
     public void Set(ItemSlot slot)
     {
+        button.enabled = true;
         itemData = slot.Data;
         icon.gameObject.SetActive(true);
         icon.sprite = slot.Data.icon;
-        quatityText.text = slot.quantity > 1 ? slot.quantity.ToString() : string.Empty;
+        quatityText.text = slot.quantity > 1 ? slot?.quantity.ToString() : string.Empty;
     }
 
     public void Clear()
     {
+        button.enabled = false;
         itemData = null;
         icon.gameObject.SetActive(false);
         icon.sprite = null;
@@ -43,6 +46,6 @@ public class ItemSlotUI : MonoBehaviour
 
     public void OnSelected()
     {
-        invenUI.UseItem(index);
+        invenUI.SelectedItem(index);
     }
 }

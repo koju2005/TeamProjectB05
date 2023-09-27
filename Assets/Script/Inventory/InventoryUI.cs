@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    [Header("Attach Data")]
-    public Player player;
     public ItemSlotUI[] slots;
-
     private Inventory inventory;
     public ItemSlot currentSlot;
 
     private void Awake()
     {
-
+        
     }
 
     private void Start()
@@ -23,14 +20,20 @@ public class InventoryUI : MonoBehaviour
 
     private void Initialize()
     {
-        var slot = transform.GetChild(0).gameObject;
+        inventory = Player.instance.Inventory;
+
+        var slot = UIManager.instance.invenory.transform.GetChild(0);
         slots = new ItemSlotUI[slot.transform.childCount];
 
         for (int i = 0; i < slot.transform.childCount; ++i)
         {
             var child = slot.transform.GetChild(i);
             slots[i] = child.GetComponent<ItemSlotUI>();
-            slots[i].Set(inventory[i]);
+
+            if (inventory[i].Data != null)
+                slots[i].Set(inventory[i]);
+            else
+                slots[i].Clear();
             slots[i].index = i;
         }
     }
@@ -39,6 +42,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (inventory[index] == null)
             return;
+
     }
 
     public void UpdateItem()
@@ -48,10 +52,5 @@ public class InventoryUI : MonoBehaviour
             slots[i].Set(inventory[i]);
             slots[i].index = i;
         }
-    }
-
-    public void UseItem(int index )
-    {
-
     }
 }

@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 1028824365803170538, guid: cd620590463a11d4696943700f8b6ee3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1280893933128239571, guid: cd620590463a11d4696943700f8b6ee3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 80
@@ -19,6 +23,14 @@ PrefabInstance:
     - target: {fileID: 1280893933128239571, guid: cd620590463a11d4696943700f8b6ee3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102115184513835878, guid: cd620590463a11d4696943700f8b6ee3, type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 4711519157647040576}
+    - target: {fileID: 3102115184513835878, guid: cd620590463a11d4696943700f8b6ee3, type: 3}
+      propertyPath: quatityText
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5537815199066820753, guid: cd620590463a11d4696943700f8b6ee3, type: 3}
       propertyPath: m_Color.a
@@ -134,3 +146,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd620590463a11d4696943700f8b6ee3, type: 3}
+--- !u!114 &4711519157647040576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1028824365803170538, guid: cd620590463a11d4696943700f8b6ee3, type: 3}
+  m_PrefabInstance: {fileID: 5703162386304273066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
