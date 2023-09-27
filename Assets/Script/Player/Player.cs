@@ -47,6 +47,11 @@ public class Player : MonoBehaviour
         playerSO = GetComponent<Player>().playerSO;
         playerCondition = GetComponent<PlayerCondition>();
 
+        InitializeInventory();
+    }
+
+    private void InitializeInventory()
+    {
         playerInventory = new Inventory(20);
 
         items = new List<ItemSlot>();
@@ -67,10 +72,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
-
     }
-
 
     private void FixedUpdate()
     {

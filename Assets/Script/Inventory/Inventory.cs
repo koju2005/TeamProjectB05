@@ -98,9 +98,9 @@ public class Inventory
     {
     }
 
-    public void UpdateCursor(int cursor)
+    public void UpdateCursor(int index)
     {
-        _cursor = (_cursor >= cursor) ? cursor : _cursor;
+        _cursor = (_cursor >= index) ? index : _cursor;
     }
 
     public void UpdateCursor()
@@ -114,13 +114,4 @@ public class Inventory
             }
         }
     }
-
-    //public Inventory(ItemSlot[] inventory)
-    //{
-    //    for(int i=0; i<inventory.Length; i++)
-    //    {
-    //        _inventory[i] = new ItemSlot();
-    //        _inventory[i] = inventory[i];
-    //    }
-    //}
 }
