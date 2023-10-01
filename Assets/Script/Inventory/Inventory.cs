@@ -33,6 +33,8 @@ public class Inventory
     private int _size;
     private int _cursor;
 
+    public ItemSlot currentItem;
+
     public ItemSlot this[int index]
     {
         get
@@ -42,6 +44,7 @@ public class Inventory
             return _inventory[index];
         }
     }
+    public int MaxSize{ get { return _maxSize; } }
 
     public Inventory(int size)
     {
@@ -49,6 +52,8 @@ public class Inventory
         _size = 0;
         _maxSize = size;
         _inventory = new ItemSlot[size];
+        currentItem = new ItemSlot();
+
         for (int i = 0; i < size; ++i)
         {
             _inventory[i] = new ItemSlot();
@@ -96,6 +101,7 @@ public class Inventory
 
     public void RemoveItem(int index)
     {
+        _inventory[index] = null;
     }
 
     public void UpdateCursor(int index)
@@ -113,5 +119,26 @@ public class Inventory
                 break;
             }
         }
+    }
+
+    public void SetCurrentItem(int index)
+    {
+        currentItem = _inventory[index];
+    }
+
+    public bool ContainItem(ItemSlot item)
+    {
+
+        foreach(var obj in _inventory)
+        {
+            if (obj.itemObj == null)
+                continue;
+            
+            if(obj.itemObj.item.name == item.Data.name)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
