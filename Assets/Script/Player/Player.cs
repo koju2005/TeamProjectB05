@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     public bool canLook = true;
 
     private bool IsRun = false;
+    private bool IsWalk = false;
     private PlayerCondition playerCondition;
     private Rigidbody _rigidbody; private CapsuleCollider _capsuleCollider;
     public static Player instance;
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] public List<ItemData> datas;
     private List<ItemSlot> items;
-
+    [SerializeField] private Animator animator;
     private void Awake()
     {
         instance = this;
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
         _capsuleCollider = GetComponent<CapsuleCollider>();
         playerSO = GetComponent<Player>().playerSO;
         playerCondition = GetComponent<PlayerCondition>();
-
+        animator = GetComponentInChildren<Animator>();
         InitializeInventory();
     }
 
@@ -91,6 +93,7 @@ public class Player : MonoBehaviour
         if (playerCondition.stamina.curValue <= 1)
         {
             curMoveMentInput = curMovevector;
+            animator.SetBool("IsSprint", false);
         }
         playerCondition.stamina.Subtract(10f);
     }
@@ -101,10 +104,18 @@ public class Player : MonoBehaviour
         {
             RunStamina();
         }
+     
         Vector3 dir = transform.forward * curMoveMentInput.y + transform.right * curMoveMentInput.x;
         dir *= Speed;
         dir.y = _rigidbody.velocity.y;
+
+        if (IsWalk)
+        {
+            dir /= 2;
+        }
         _rigidbody.velocity = dir;
+
+
     }
     void CameraLook()
     {
@@ -128,11 +139,14 @@ public class Player : MonoBehaviour
         }
         else if (context.phase == InputActionPhase.Performed)
         {
+
             curMoveMentInput = context.ReadValue<Vector2>();
+            animator.SetBool("IsMove", true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             curMoveMentInput = Vector2.zero;
+            animator.SetBool("IsMove", false);
         }
     }
     public void OnRunInput(InputAction.CallbackContext context)
@@ -140,12 +154,13 @@ public class Player : MonoBehaviour
         if (context.phase == InputActionPhase.Performed && IsRun == false && playerCondition.stamina.curValue > 0f)
         {
             curMoveMentInput *= 2;
-
+            animator.SetBool("IsSprint", true);
             IsRun = true;
         }
         else if (context.phase == InputActionPhase.Canceled && IsRun == true)
         {
             curMoveMentInput = curMovevector;
+            animator.SetBool("IsSprint", false);
             IsRun = false;
         }
     }
@@ -153,10 +168,13 @@ public class Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            curMoveMentInput /= 2;
+            IsWalk = true;
+            animator.SetBool("Walk", true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
+            IsWalk = false;
+            animator.SetBool("Walk", false);
             curMoveMentInput *= curMovevector;
         }
     }
@@ -165,18 +183,21 @@ public class Player : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             if (IsGrounded())
+            {
                 _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
+                animator.SetTrigger("Jump");
+            }
         }
     }
     public void OnCrouchInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            _capsuleCollider.height = 0.8f;
+            animator.SetBool("Crouch",true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            _capsuleCollider.height = 1.7f;
+            animator.SetBool("Crouch", false);
         }
     }
 
