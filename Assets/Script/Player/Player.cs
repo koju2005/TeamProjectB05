@@ -33,11 +33,15 @@ public class Player : MonoBehaviour
     public static Player instance;
     public PlayerSO playerSO;
 
+    //Inventory:
     private Inventory playerInventory;
+    private Inventory playerEquip;
     public Inventory Inventory { get {  return playerInventory; } }
+    public Inventory Equip { get { return playerEquip; } }
 
     [SerializeField] public List<ItemData> datas;
     private List<ItemSlot> items;
+
 
     private void Awake()
     {
@@ -53,6 +57,7 @@ public class Player : MonoBehaviour
     private void InitializeInventory()
     {
         playerInventory = new Inventory(20);
+        playerEquip = new Inventory(5);
 
         items = new List<ItemSlot>();
         foreach (var data in datas)
@@ -67,6 +72,7 @@ public class Player : MonoBehaviour
         }
 
         playerInventory.AddItems(items);
+        Debug.Log("Initialize Complete");
     }
 
     private void Start()
