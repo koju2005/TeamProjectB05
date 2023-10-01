@@ -1494,10 +1494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9bb890c29244e3429a179a83c1cbbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 0}
-  icon: {fileID: 0}
-  quatityText: {fileID: 0}
-  index: 0
   item: {fileID: 11400000, guid: 2f75ea50a3c23ba4b805852139444fd0, type: 2}
 --- !u!1 &106214259
 GameObject:
@@ -9653,7 +9649,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.7
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10484,7 +10480,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.7
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11684,10 +11680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9bb890c29244e3429a179a83c1cbbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 0}
-  icon: {fileID: 0}
-  quatityText: {fileID: 0}
-  index: 0
   item: {fileID: 11400000, guid: aeb2eef8eea41704181071bad7370403, type: 2}
 --- !u!65 &948529811
 BoxCollider:
@@ -21465,7 +21457,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
