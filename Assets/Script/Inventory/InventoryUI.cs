@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
     public ItemSlotUI[] slots;
-    private Inventory inventory;
-    public ItemSlot currentSlot;
+    private Inventory _inventory;
 
     public GameObject Root;
 
+    public ItemSlot SelectItem {  get { return _inventory.currentItem; } }
+
     private void Awake()
     {
-        
+
     }
 
     private void Start()
@@ -22,8 +24,8 @@ public class InventoryUI : MonoBehaviour
 
     private void Initialize()
     {
-        // 인벤토리의 주체(아이템 보유 정보를 갖고 있는 대상. 플레이어, 상자 등)
-        inventory = Player.instance.Inventory;
+        // 인벤토리 내용물의 주체
+        _inventory = Player.instance.Inventory;
 
         // 인벤토리의 슬롯 가져오기
         var slot = Root.transform.GetChild(0);
@@ -34,26 +36,33 @@ public class InventoryUI : MonoBehaviour
         {
             var child = slot.transform.GetChild(i);
             slots[i] = child.GetComponent<ItemSlotUI>();
+            slots[i].SetRootObject(Root);
 
-            if (inventory[i].Data != null)
-                slots[i].Set(inventory[i]);
+            if (_inventory[i].Data != null)
+                slots[i].Set(_inventory[i]);
             else
                 slots[i].Clear();
             slots[i].index = i;
         }
+
+        Debug.Log(_inventory[0].Data.displayName);
     }
 
     public void SelectedItem(int index)
     {
-        if (inventory[index] == null)
-            return;
+        if (_inventory[index].Data == null)
+            Debug.Log("is null");
+
+        _inventory.SetCurrentItem(index);
+
+        UIManager.instance.ShowItemInfo();
     }
 
     public void UpdateItem()
     {
         for(int i=0; i<slots.Length;++i)
         {
-            slots[i].Set(inventory[i]);
+            slots[i].Set(_inventory[i]);
             slots[i].index = i;
         }
     }
