@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6999960935586027551}
   - component: {fileID: -7897970495920902726}
   - component: {fileID: 4426503294491914011}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Floor_A preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   red: {fileID: 2100000, guid: 164d86d70096ea446bd6f649fa7fed52, type: 2}
   isRotatable: 1
   needType: 0
+  height: 1
 --- !u!65 &-7897970495920902726
 BoxCollider:
   m_ObjectHideFlags: 0

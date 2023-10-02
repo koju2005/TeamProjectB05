@@ -122,6 +122,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  vectors:
+  - {x: 2, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
+  - {x: 0, y: 0, z: 2}
+  - {x: 0, y: 0, z: -2}
 --- !u!65 &3476560179300502434
 BoxCollider:
   m_ObjectHideFlags: 0

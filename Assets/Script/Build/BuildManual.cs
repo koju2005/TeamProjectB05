@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class BuildManual : MonoBehaviour
 
     public void SlotClick(int _slotNumber)
     {
-        Debug.Log("Slot Clit" + _slotNumber);
+        Debug.Log("Slot Click" + _slotNumber);
         Preview = Instantiate(craft_floor[_slotNumber].PreviewPrefab, tf_Player.position + tf_Player.forward, Quaternion.identity);
         Prefab = craft_floor[_slotNumber].prefab;
         isPreviewActivated = true;
@@ -72,18 +73,40 @@ public class BuildManual : MonoBehaviour
                         Preview.transform.Rotate(0f, +90f, 0f);
                 }
 
-                if (Preview.GetComponent<PreviewObject>().isNeeded())
+                if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Structure"))
                 {
-                    _location = Preview.GetComponent<PreviewObject>().getPosition();
+                    Debug.Log("RayCast Collide Structure");
+
+                    if (Preview.GetComponent<PreviewObject>().isBuildable() && Preview.GetComponent<PreviewObject>().isNeeded())
+                    {
+                        Vector3 vector = Preview.GetComponent<PreviewObject>().getPosition();
+                        Vector3[] vectors = Preview.GetComponent<PreviewObject>().getPositions();
+
+                        float min = float.MaxValue;
+                        Vector3 v;
+
+                        for (int i = 0; i < vectors.Length; i++)
+                        {
+                            v = vector + vectors[i];
+                            float dist = Vector3.Distance(_location, v);
+                            if (min > dist)
+                            {
+                                _location = v;
+                                Preview.transform.rotation = Quaternion.Euler(0, i * 90f, 0);
+                                min = dist;
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    _location.Set(Mathf.Round(_location.x), Mathf.Round(_location.y / 0.1f) * 0.1f, Mathf.Round(_location.z));
-                }
+
+                float x = _location.x;
+                float y = _location.y + Preview.GetComponent<PreviewObject>().height;
+                float z = _location.z;
+
+                _location.Set(Mathf.Round(x), Mathf.Round(y / 0.1f) * 0.1f, Mathf.Round(z));
 
 
                 Preview.transform.position = _location;
-
             }
         }
     }
