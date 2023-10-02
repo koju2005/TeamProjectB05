@@ -10,4 +10,6 @@ public class Building : MonoBehaviour
         Wall,   // 벽
         Floor, // 바닥
     }
+
+    public Vector3[] vectors;
 }
