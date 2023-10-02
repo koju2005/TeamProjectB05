@@ -26,7 +26,7 @@ public class ItemSlot
     }
 }
 
-public class Inventory
+public class Inventory:IItemContainer
 {
     private ItemSlot[] _inventory;
     private int _maxSize;
