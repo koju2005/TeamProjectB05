@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        // Debug.Log(curMoveMentInput);
+        Debug.Log(curMoveMentInput);
     }
 
     private void LateUpdate()
