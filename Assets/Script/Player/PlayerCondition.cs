@@ -68,7 +68,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         hunger.Subtract(playerSO.deCayRate * Time.deltaTime);
         thirsty.Subtract(playerSO.deCayRate * Time.deltaTime);
         stamina.Add(playerSO.regenRate * Time.deltaTime);
-        Debug.Log(stamina.curValue);
+        // Debug.Log(stamina.curValue);
 
         if (hunger.curValue == 0.0f)
         {

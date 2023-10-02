@@ -75,27 +75,36 @@ public class BuildManual : MonoBehaviour
 
                 if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Structure"))
                 {
-                    Debug.Log("RayCast Collide Structure");
-
-                    if (Preview.GetComponent<PreviewObject>().isBuildable() && Preview.GetComponent<PreviewObject>().isNeeded())
+                    if (Preview.GetComponent<PreviewObject>().isNeeded())
                     {
-                        Vector3 vector = Preview.GetComponent<PreviewObject>().getPosition();
-                        Vector3[] vectors = Preview.GetComponent<PreviewObject>().getPositions();
-
-                        float min = float.MaxValue;
-                        Vector3 v;
-
-                        for (int i = 0; i < vectors.Length; i++)
+                        if (Preview.GetComponent<PreviewObject>().isBuildable())
                         {
-                            v = vector + vectors[i];
-                            float dist = Vector3.Distance(_location, v);
-                            if (min > dist)
+                            Vector3 vector = Preview.GetComponent<PreviewObject>().getPosition();
+                            Vector3[] vectors = Preview.GetComponent<PreviewObject>().getPositions();
+
+                            float min = float.MaxValue;
+                            Vector3 v;
+                            int index = 0;
+
+                            for (int i = 0; i < vectors.Length; i++)
                             {
-                                _location = v;
-                                Preview.transform.rotation = Quaternion.Euler(0, i * 90f, 0);
-                                min = dist;
+                                v = vector + vectors[i];
+                                float dist = Vector3.Distance(_location, v);
+
+                                if (min > dist)
+                                {
+                                    index = i;
+                                    Preview.transform.rotation = Quaternion.Euler(0, i * 90f, 0);
+                                    min = dist;
+                                }
                             }
+
+                            _location = vector + vectors[index];
                         }
+                    }
+                    else
+                    {
+
                     }
                 }
 
@@ -103,7 +112,7 @@ public class BuildManual : MonoBehaviour
                 float y = _location.y + Preview.GetComponent<PreviewObject>().height;
                 float z = _location.z;
 
-                _location.Set(Mathf.Round(x), Mathf.Round(y / 0.1f) * 0.1f, Mathf.Round(z));
+                _location.Set(Mathf.Round(x * 0.5f) / 0.5f, Mathf.Round(y / 0.1f) * 0.1f, Mathf.Round(z * 0.5f) / 0.5f);
 
 
                 Preview.transform.position = _location;
