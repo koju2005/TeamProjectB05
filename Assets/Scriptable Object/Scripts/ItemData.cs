@@ -16,19 +16,16 @@ public enum ConsumableType
     thirsty,
     Health
 }
-
+public enum ResourceName
+{
+    Wood,
+    Rock
+}
 [System.Serializable]
 public class ItemDataConsumable
 {
     public ConsumableType type;
     public float value;
-}
-
-[System.Serializable]
-public class ItemDataResource
-{
-    public string name;
-    public int needCnt;
 }
 
 
@@ -48,10 +45,4 @@ public class ItemData : ScriptableObject
 
     [Header("Consumable")]
     public ItemDataConsumable[] consumables;
-
-    [Header("Equip")]
-    public ItemDataResource[] resourcesEquip;
-
-    [Header("Structure")]
-    public ItemDataResource[] resourcesStructure;
 }
