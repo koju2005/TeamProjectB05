@@ -103,7 +103,7 @@ public class Inventory:IItemContainer
     {
         _inventory[index] = null;
     }
-
+    
     public void UpdateCursor(int index)
     {
         _cursor = (_cursor >= index) ? index : _cursor;
@@ -140,5 +140,17 @@ public class Inventory:IItemContainer
             }
         }
         return false;
+    }
+    public int ItemCount(ItemObject item)
+    {
+        int number = 0;
+        for(int i=0; i< _inventory.Length;i++)
+        {
+            if (_inventory[i].itemObj == item)
+            {
+                number++;
+            }
+        }
+        return number;
     }
 }
