@@ -160,6 +160,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1121832 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+  m_PrefabInstance: {fileID: 288075029}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &14336521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3955,6 +3960,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288039332}
   m_CullTransparentMesh: 1
+--- !u!1001 &288075029
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 488388361}
+    m_Modifications:
+    - target: {fileID: 1335500218136280, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_Name
+      value: Cyber Monsters 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022741551580116, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95450259988899018, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cfbda3431bce5174181d7b2a13d32ac8, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
 --- !u!1001 &303011170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5990,7 +6056,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba15fcbda9794b942b30b4c33571c8a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 636693857}
 --- !u!20 &452046465
 Camera:
   m_ObjectHideFlags: 0
@@ -6620,7 +6685,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 537963126}
+  - {fileID: 1121832}
   m_Father: {fileID: 766782898}
   m_LocalEulerAnglesHint: {x: 0, y: -176.799, z: 0}
 --- !u!114 &488388362
@@ -6638,15 +6703,15 @@ MonoBehaviour:
   health: 8
   walkSpeed: 2
   runSpeed: 6
-  detectDistance: 5
-  safeDistance: 8
+  detectDistance: 8
+  safeDistance: 9
   minWanderDistance: 5
   maxWanderDistance: 10
   minWanderwaitTime: 1
   maxWanderWaitTime: 2
   damage: 8
   attackRate: 2
-  attackDistance: 5
+  attackDistance: 6
   fieldOfView: 120
 --- !u!65 &488388363
 BoxCollider:
@@ -7087,11 +7152,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &537963126 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-  m_PrefabInstance: {fileID: 1578298442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &553615379
 GameObject:
   m_ObjectHideFlags: 0
@@ -8621,6 +8681,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae0f6849ed995e9459084a739c152f6c, type: 2}
   - {fileID: 11400000, guid: 82ad009febe6ced4ab517d1f44b4028d, type: 2}
   - {fileID: 11400000, guid: 417febc7c8f225a48af488c6d3b2ad37, type: 2}
+  animator: {fileID: 0}
 --- !u!136 &636693862
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18321,67 +18382,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577248971}
   m_CullTransparentMesh: 1
---- !u!1001 &1578298442
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 488388361}
-    m_Modifications:
-    - target: {fileID: 1335500218136280, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_Name
-      value: Cyber Monsters 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022741551580116, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95450259988899018, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: cfbda3431bce5174181d7b2a13d32ac8, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a9029c0006ed9b743b02f36126e06e0f, type: 3}
 --- !u!1 &1596699600
 GameObject:
   m_ObjectHideFlags: 0
