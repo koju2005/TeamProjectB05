@@ -113,8 +113,8 @@ public class ItemInfoUI : MonoBehaviour
         Debug.Log("UseConsumableItem");
     }
 
-    private void UseDrop()
+    public void UseDrop()
     {
-        
+        Debug.Log("UseDropItem");
     }
 }
