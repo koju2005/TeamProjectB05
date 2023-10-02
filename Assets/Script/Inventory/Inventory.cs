@@ -75,7 +75,7 @@ public class Inventory
             if (_inventory[i].itemObj == null)
                 continue;
 
-            if (_inventory[i].itemObj.name == itemObj.item.name)
+            if (_inventory[i].itemObj.item.name == itemObj.item.name)
             {
                 if (_inventory[i].quantity >= itemObj.item.maxStackAmount)
                 {
