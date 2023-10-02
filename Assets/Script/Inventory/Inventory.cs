@@ -34,7 +34,7 @@ public class Inventory
     private int _cursor;
 
     public ItemSlot currentItem;
-
+    public static Inventory instance;
     public ItemSlot this[int index]
     {
         get
