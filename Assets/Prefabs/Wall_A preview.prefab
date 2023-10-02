@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 402608}
   - component: {fileID: 3338192}
   - component: {fileID: 2312780}
-  - component: {fileID: 6466718}
   - component: {fileID: 4596903263402040683}
   - component: {fileID: 1642289630241708898}
   - component: {fileID: 8784896901018162401}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wall_A preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6466718
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129780}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300058, guid: 48bc8660d1e6e7a42bb8c86473fcd74a, type: 3}
 --- !u!114 &4596903263402040683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,8 +102,9 @@ MonoBehaviour:
   layerGround: 7
   green: {fileID: 2100000, guid: bdb00b364102e3e45abd837a35c9c90a, type: 2}
   red: {fileID: 2100000, guid: 164d86d70096ea446bd6f649fa7fed52, type: 2}
+  isRotatable: 1
   needType: 2
-  needTypeFlag: 0
+  height: 2
 --- !u!54 &1642289630241708898
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,5 +151,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.20000063, y: 4, z: 4}
-  m_Center: {x: -0.050501995, y: 0, z: 0}
+  m_Size: {x: 0.2, y: 4, z: 3.65}
+  m_Center: {x: -0.05, y: 0, z: 0}

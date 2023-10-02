@@ -18,9 +18,12 @@ public class PreviewObject : MonoBehaviour
 
     public bool isRotatable;
     private bool needTypeFlag;
+    private Vector3[] buildPositions;
     private Vector3 targetPosition;
     public Building.Type needType;
     private List<Material> materials = new List<Material>();
+
+    public float height;
 
     private void Start()
     {
@@ -65,6 +68,7 @@ public class PreviewObject : MonoBehaviour
             {
                 if (needType != Building.Type.Normal)
                 {
+                    buildPositions = other.GetComponent<Building>().vectors;
                     targetPosition = other.transform.position;
                 }
                 needTypeFlag = true;
@@ -103,10 +107,16 @@ public class PreviewObject : MonoBehaviour
             return colliderList.Count == 0 && needTypeFlag;
     }
 
+    public Vector3[] getPositions()
+    {
+        return buildPositions;
+    }
+
     public Vector3 getPosition()
     {
         return targetPosition;
     }
+
 
     public bool isNeeded()
     {

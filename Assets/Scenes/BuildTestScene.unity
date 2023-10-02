@@ -300,7 +300,7 @@ MonoBehaviour:
   tf_Player: {fileID: 963194228}
   layerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   range: 10
 --- !u!4 &136147156
 Transform:
@@ -810,6 +810,9 @@ MonoBehaviour:
     maxValue: 0
     uiBar: {fileID: 2057741689}
   playerSO: {fileID: 0}
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &671203349
 GameObject:
   m_ObjectHideFlags: 0

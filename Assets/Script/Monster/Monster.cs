@@ -51,7 +51,7 @@ public class Monster : MonoBehaviour, IDamagable
 
     private void Start()
     {
-        SetState(AIState.Wandering);
+        SetState(AIState.Idle);
     }
 
     private void Update()
