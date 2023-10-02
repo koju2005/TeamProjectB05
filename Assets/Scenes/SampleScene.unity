@@ -4835,7 +4835,7 @@ MonoBehaviour:
   health: 6
   walkSpeed: 1
   runSpeed: 4
-  detectDistance: 5
+  detectDistance: 4
   safeDistance: 8
   minWanderDistance: 5
   maxWanderDistance: 10
@@ -17157,7 +17157,7 @@ MonoBehaviour:
   health: 6
   walkSpeed: 1
   runSpeed: 4
-  detectDistance: 5
+  detectDistance: 4
   safeDistance: 8
   minWanderDistance: 5
   maxWanderDistance: 10
@@ -22124,7 +22124,7 @@ MonoBehaviour:
   health: 6
   walkSpeed: 1
   runSpeed: 4
-  detectDistance: 5
+  detectDistance: 4
   safeDistance: 8
   minWanderDistance: 5
   maxWanderDistance: 10
