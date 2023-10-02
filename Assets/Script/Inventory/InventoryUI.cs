@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,6 +21,11 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         Initialize();
+    }
+
+    private void OnEnable()
+    {
+        UpdateItem();
     }
 
     private void Initialize()
@@ -44,8 +50,6 @@ public class InventoryUI : MonoBehaviour
                 slots[i].Clear();
             slots[i].index = i;
         }
-
-        Debug.Log(_inventory[0].Data.displayName);
     }
 
     public void SelectedItem(int index)
@@ -60,10 +64,12 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateItem()
     {
-        for(int i=0; i<slots.Length;++i)
+        for (int i = 0; i < slots.Length; ++i)
         {
-            slots[i].Set(_inventory[i]);
-            slots[i].index = i;
+            if (_inventory[i].Data != null)
+                slots[i].Set(_inventory[i]);
+            else
+                slots[i].Clear();
         }
     }
 }

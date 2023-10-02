@@ -100,7 +100,7 @@ public class ItemInfoUI : MonoBehaviour
     public bool CheckEquipable()
     {
         var _current = Player.instance.Inventory.currentItem;
-        return !Player.instance.Equip.ContainItem(_current);
+        return !Player.instance.Equip.ContainItem(_current.itemObj);
     }
 
     private void UseConsumable()
@@ -111,5 +111,10 @@ public class ItemInfoUI : MonoBehaviour
     private void UseResource()
     {
         Debug.Log("UseConsumableItem");
+    }
+
+    public void UseDrop()
+    {
+        Debug.Log("UseDropItem");
     }
 }

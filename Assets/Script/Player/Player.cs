@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
         }
 
         playerInventory.AddItems(items);
-        Debug.Log("Initialize Complete");
     }
 
     private void Start()
