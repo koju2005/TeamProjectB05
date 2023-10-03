@@ -2,8 +2,8 @@
 
 public interface IItemContainer
 {
-    bool ContainItem(ItemSlot item);
-    void RemoveItem(int index);
+    bool ContainItem(ItemObject item);
+    void RemoveItem(ItemObject item);
     void AddItem(ItemObject item);
     int ItemCount(ItemObject item);
 }

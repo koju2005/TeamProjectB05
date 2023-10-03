@@ -173,4 +173,14 @@ public class Inventory:IItemContainer
         }
         return number;
     }
+    public void RemoveItem(ItemObject item)
+    {
+        for(int i=0;i< _inventory.Length; i++)
+        {
+            if (_inventory[i].itemObj == item)
+            {
+                _inventory[i].itemObj = null;
+            }
+        }
+    }
 }
