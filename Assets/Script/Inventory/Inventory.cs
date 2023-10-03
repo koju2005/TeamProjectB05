@@ -34,7 +34,9 @@ public class Inventory:IItemContainer
     private int _cursor;
 
     public ItemSlot currentItem;
-    public static Inventory instance;
+    public int _currentItemIndex;
+
+    //public static Inventory instance;
     public ItemSlot this[int index]
     {
         get
@@ -60,35 +62,47 @@ public class Inventory:IItemContainer
         }
     }
 
-    public void AddItem(ItemObject item)
+    public void AddItem(ItemObject itemObj)
     {
         if (_size >= _maxSize)
             return;
 
-        UpdateCursor();
+        bool isStack = false;
+        bool isEmpty = ContainItem(itemObj);
 
-        _inventory[_cursor].itemObj = item;
-        _inventory[_cursor].quantity = 1;
-        _size++;
+        for (int i=0; i< _maxSize; ++i)
+        {
+            if (_inventory[i].itemObj == null)
+                continue;
 
-        //if (_inventory[i].Data == null)
-        //{
-        //    UpdateCursor(i);
-        //    _inventory[_cursor].itemObj = item;
-        //    _inventory[_cursor].quantity = 1;
-        //}
+            if (_inventory[i].itemObj.item.name == itemObj.item.name)
+            {
+                if (_inventory[i].quantity >= itemObj.item.maxStackAmount)
+                {
+                    isStack = true;
+                }
+                else if (_inventory[i].quantity < itemObj.item.maxStackAmount)
+                {
+                    isStack = false;
+                    _inventory[i].quantity += 1;
+                    break;
+                }
+            }
+            else
+            {
+                isStack = true;
+            }
+        }
 
-        //var data = _inventory[i].Data;
-        //if (data.displayName == item.item.displayName)
-        //{
-        //    if ((data.canStack) && (data.maxStackAmount >= _inventory[i].quantity))
-        //        _inventory[i].quantity += 1;
-        //}
-        //else
-        //{
-        //    _inventory[_cursor].itemObj = item;
-        //    _inventory[_cursor].quantity = 1;
-        //}
+        if (isStack || (!isEmpty))
+        {
+            UpdateCursor();
+            _inventory[_cursor].itemObj = itemObj;
+            _inventory[_cursor].quantity = 1;
+            _size++;
+        }
+        
+
     }
 
     public void AddItems(IEnumerable<ItemSlot> items)
@@ -101,12 +115,19 @@ public class Inventory:IItemContainer
 
     public void RemoveItem(int index)
     {
+
         _inventory[index] = null;
     }
     
     public void UpdateCursor(int index)
     {
         _cursor = (_cursor >= index) ? index : _cursor;
+
+        if (_inventory[index].itemObj.item.canStack && _inventory[index].quantity <= 0)
+            _inventory[index].quantity -= 1;
+        else
+            _inventory[index] = null;
+
     }
 
     public void UpdateCursor()
@@ -126,15 +147,14 @@ public class Inventory:IItemContainer
         currentItem = _inventory[index];
     }
 
-    public bool ContainItem(ItemSlot item)
+    public bool ContainItem(ItemObject itemObj)
     {
-
-        foreach(var obj in _inventory)
+        foreach (var obj in _inventory)
         {
             if (obj.itemObj == null)
                 continue;
-            
-            if(obj.itemObj.item.name == item.Data.name)
+
+            if (obj.itemObj.item.name == itemObj.item.name)
             {
                 return true;
             }
