@@ -26,7 +26,7 @@ public class ItemSlot
     }
 }
 
-public class Inventory
+public class Inventory:IItemContainer
 {
     private ItemSlot[] _inventory;
     private int _maxSize;
@@ -115,10 +115,19 @@ public class Inventory
 
     public void RemoveItem(int index)
     {
+
+        _inventory[index] = null;
+    }
+    
+    public void UpdateCursor(int index)
+    {
+        _cursor = (_cursor >= index) ? index : _cursor;
+
         if (_inventory[index].itemObj.item.canStack && _inventory[index].quantity <= 0)
             _inventory[index].quantity -= 1;
         else
             _inventory[index] = null;
+
     }
 
     public void UpdateCursor()
@@ -151,5 +160,27 @@ public class Inventory
             }
         }
         return false;
+    }
+    public int ItemCount(ItemObject item)
+    {
+        int number = 0;
+        for(int i=0; i< _inventory.Length;i++)
+        {
+            if (_inventory[i].itemObj == item)
+            {
+                number++;
+            }
+        }
+        return number;
+    }
+    public void RemoveItem(ItemObject item)
+    {
+        for(int i=0;i< _inventory.Length; i++)
+        {
+            if (_inventory[i].itemObj == item)
+            {
+                _inventory[i].itemObj = null;
+            }
+        }
     }
 }

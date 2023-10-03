@@ -11,11 +11,13 @@ public class ItemObject : MonoBehaviour, IInteractable
         return string.Format("Pickup {0}", item.displayName);
     }
 
+
     public void OnInteract()
     {
         Player.instance.Inventory.AddItem(this);
         //Destroy(gameObject);
     }
+
 
     public ItemObject()
     {
@@ -32,5 +34,6 @@ public class ItemObject : MonoBehaviour, IInteractable
     {
         return string.Format("Pickup {0}", item.displayName);
     }
+
 }
 
