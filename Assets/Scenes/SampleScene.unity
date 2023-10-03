@@ -492,7 +492,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &34413101
 BoxCollider:
@@ -1194,7 +1194,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &85994189
 BoxCollider:
@@ -4907,7 +4907,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &316192649
 BoxCollider:
@@ -5650,7 +5650,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 5
   attackRate: 1.5
-  attackDistance: 2
+  attackDistance: 3
   fieldOfView: 120
 --- !u!65 &354282937
 BoxCollider:
@@ -7226,7 +7226,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &456642475
 BoxCollider:
@@ -9107,7 +9107,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &596244254
 BoxCollider:
@@ -14211,7 +14211,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &1035348451
 BoxCollider:
@@ -16069,7 +16069,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &1184010742
 BoxCollider:
@@ -16269,7 +16269,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &1190764880
 BoxCollider:
@@ -19375,7 +19375,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 5
   attackRate: 1.5
-  attackDistance: 2
+  attackDistance: 3
   fieldOfView: 120
 --- !u!65 &1445231585
 BoxCollider:
@@ -20926,7 +20926,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 2
   attackRate: 1.5
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
 --- !u!65 &1573439915
 BoxCollider:
@@ -25476,7 +25476,7 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 5
   attackRate: 1.5
-  attackDistance: 2
+  attackDistance: 3
   fieldOfView: 120
 --- !u!65 &1948617585
 BoxCollider:
