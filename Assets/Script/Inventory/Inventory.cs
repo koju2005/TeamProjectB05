@@ -26,7 +26,7 @@ public class ItemSlot
     }
 }
 
-public class Inventory:IItemContainer
+public class Inventory : IItemContainer
 {
     private ItemSlot[] _inventory;
     private int _maxSize;
@@ -46,7 +46,7 @@ public class Inventory:IItemContainer
             return _inventory[index];
         }
     }
-    public int MaxSize{ get { return _maxSize; } }
+    public int MaxSize { get { return _maxSize; } }
 
     public Inventory(int size)
     {
@@ -70,7 +70,7 @@ public class Inventory:IItemContainer
         bool isStack = false;
         bool isEmpty = ContainItem(itemObj);
 
-        for (int i=0; i< _maxSize; ++i)
+        for (int i = 0; i < _maxSize; ++i)
         {
             if (_inventory[i].itemObj == null)
                 continue;
@@ -101,13 +101,13 @@ public class Inventory:IItemContainer
             _inventory[_cursor].quantity = 1;
             _size++;
         }
-        
+
 
     }
 
     public void AddItems(IEnumerable<ItemSlot> items)
     {
-        foreach(var obj in items)
+        foreach (var obj in items)
         {
             AddItem(obj.itemObj);
         }
@@ -118,7 +118,7 @@ public class Inventory:IItemContainer
 
         _inventory[index] = null;
     }
-    
+
     public void UpdateCursor(int index)
     {
         _cursor = (_cursor >= index) ? index : _cursor;
@@ -132,7 +132,7 @@ public class Inventory:IItemContainer
 
     public void UpdateCursor()
     {
-        for(int i=0; i<_maxSize; ++i)
+        for (int i = 0; i < _maxSize; ++i)
         {
             if (_inventory[i].Data == null)
             {
@@ -161,10 +161,30 @@ public class Inventory:IItemContainer
         }
         return false;
     }
-    public int ItemCount(ItemObject item)
+
+
+
+
+    public bool ContainItem(ItemData item)
+    {
+        foreach (var obj in _inventory)
+        {
+            if (obj.itemObj == null)
+                continue;
+
+            if (obj.itemObj.item.name == item.name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public int ItemCount(ItemData item)
     {
         int number = 0;
-        for(int i=0; i< _inventory.Length;i++)
+        for (int i = 0; i < _inventory.Length; i++)
         {
             if (_inventory[i].itemObj == item)
             {
@@ -173,13 +193,45 @@ public class Inventory:IItemContainer
         }
         return number;
     }
-    public void RemoveItem(ItemObject item)
+    public void RemoveItem(ItemData item)
     {
-        for(int i=0;i< _inventory.Length; i++)
+        for (int i = 0; i < _inventory.Length; i++)
         {
             if (_inventory[i].itemObj == item)
             {
                 _inventory[i].itemObj = null;
+            }
+        }
+    }
+    public void AddItem(ItemData item)
+    {
+        if (_size >= _maxSize)
+            return;
+
+        bool isStack = false;
+        bool isEmpty = ContainItem(item);
+
+        for (int i = 0; i < _maxSize; ++i)
+        {
+            if (_inventory[i].itemObj == null)
+                continue;
+
+            if (_inventory[i].itemObj.item.name == item.name)
+            {
+                if (_inventory[i].quantity >= item.maxStackAmount)
+                {
+                    isStack = true;
+                }
+                else if (_inventory[i].quantity < item.maxStackAmount)
+                {
+                    isStack = false;
+                    _inventory[i].quantity += 1;
+                    break;
+                }
+            }
+            else
+            {
+                isStack = true;
             }
         }
     }

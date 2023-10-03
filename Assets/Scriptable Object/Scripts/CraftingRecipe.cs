@@ -6,7 +6,7 @@ using System;
 [Serializable]
 public struct ItemAmount
 {
-    public ItemObject item;
+    public ItemData item;
     [Range(1,999)]
     public int Amount;
 }
