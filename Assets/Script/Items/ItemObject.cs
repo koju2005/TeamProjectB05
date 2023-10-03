@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemObject : MonoBehaviour, IInteractable
@@ -14,6 +15,11 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
+        if(item.displayName == "Water")
+        {
+            GameManager.instance.player.GetComponent<PlayerCondition>().thirsty.Add(10f);
+        }
+        else
         Player.instance.Inventory.AddItem(this);
         //Destroy(gameObject);
     }
