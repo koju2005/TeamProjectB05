@@ -9,6 +9,7 @@ public class Building : MonoBehaviour
         Normal, // 건축물이 아닌 것들
         Wall,   // 벽
         Floor, // 바닥
+        Fence, // 울타리
     }
 
     public Vector3[] vectors;
