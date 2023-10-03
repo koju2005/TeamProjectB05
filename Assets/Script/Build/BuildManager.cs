@@ -40,7 +40,7 @@ public class BuildManager : MonoBehaviour
 
         structure = new Dictionary<string, GameObject>();
 
-        foreach (GameObject gameObject in Resources.LoadAll<GameObject>("Structure"))
+        foreach (GameObject gameObject in Resources.LoadAll<GameObject>("Prefabs/Structure"))
         {
             structure.Add(gameObject.name, gameObject);
         }
@@ -78,7 +78,8 @@ public class BuildManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad1) && !isPreviewActivated && CanBulid)
             PreviewActive("Wall");
-
+		if (Input.GetKeyDown(KeyCode.Keypad2) && !isPreviewActivated && CanBulid)
+            PreviewActive("Fence");
         if (Input.GetKeyDown(KeyCode.Escape) && isPreviewActivated && CanBulid)
             Cancel();
 
@@ -133,10 +134,6 @@ public class BuildManager : MonoBehaviour
 
                             _location = vector + vectors[index];
                         }
-                    }
-                    else
-                    {
-
                     }
                 }
 
