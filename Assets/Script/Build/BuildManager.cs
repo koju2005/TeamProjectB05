@@ -3,24 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Craft
+public class BuildManager : MonoBehaviour
 {
-    public string craftName; // 이름
-    public GameObject prefab; // 실제 설치 될 프리팹
-    public GameObject PreviewPrefab; // 미리 보기 프리팹
-}
-
-public class BuildManual : MonoBehaviour
-{
-    private bool isActivated = false;  // CraftManual UI 활성 상태
     private bool isPreviewActivated = false; // 미리 보기 활성화 상태
-
     private GameObject Preview; // 미리 보기 프리팹을 담을 변수
     private GameObject Prefab; // 실제 생성될 프리팹을 담을 변수 
 
     [SerializeField]
-    private Craft[] craft_floor;
+    private Dictionary<string, GameObject> structure;
 
     [SerializeField]
     private Transform tf_Player;  // 플레이어 위치
@@ -31,21 +21,44 @@ public class BuildManual : MonoBehaviour
     [SerializeField]
     private float range;
 
-    public void SlotClick(int _slotNumber)
+    public static BuildManager I;
+
+    protected void Awake()
     {
-        Debug.Log("Slot Click" + _slotNumber);
-        Preview = Instantiate(craft_floor[_slotNumber].PreviewPrefab, tf_Player.position + tf_Player.forward, Quaternion.identity);
-        Prefab = craft_floor[_slotNumber].prefab;
+        if (I == null)
+        {
+            I = this;
+        }
+
+        if (I != this)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+
+        structure = new Dictionary<string, GameObject>();
+
+        foreach (GameObject gameObject in Resources.LoadAll<GameObject>("Structure"))
+        {
+            structure.Add(gameObject.name, gameObject);
+        }
+    }
+
+    public void PreviewActive(string _structureName)
+    {
+        Preview = Instantiate(structure[_structureName + "_Preview"], tf_Player.position + tf_Player.forward, Quaternion.identity);
+        Prefab = structure[_structureName];
         isPreviewActivated = true;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad0) && !isPreviewActivated)
-            SlotClick(0);
+            PreviewActive("Floor");
 
         if (Input.GetKeyDown(KeyCode.Keypad1) && !isPreviewActivated)
-            SlotClick(1);
+            PreviewActive("Wall");
 
         if (Input.GetKeyDown(KeyCode.Escape) && isPreviewActivated)
             Cancel();
@@ -120,25 +133,23 @@ public class BuildManual : MonoBehaviour
         }
     }
 
-    private void Build()
+    public void Build()
     {
         if (isPreviewActivated && Preview.GetComponent<PreviewObject>().isBuildable())
         {
             Instantiate(Prefab, Preview.transform.position, Preview.transform.rotation);
             Destroy(Preview);
-            isActivated = false;
             isPreviewActivated = false;
             Preview = null;
             Prefab = null;
         }
     }
 
-    private void Cancel()
+    public void Cancel()
     {
         if (isPreviewActivated)
             Destroy(Preview);
 
-        isActivated = false;
         isPreviewActivated = false;
 
         Preview = null;

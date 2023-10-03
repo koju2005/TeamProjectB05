@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 136147156}
   - component: {fileID: 136147155}
   m_Layer: 0
-  m_Name: BuildManual
+  m_Name: BuildManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -290,13 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bded231ced4274cbe8684d4acceed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craft_floor:
-  - craftName: floor_A
-    prefab: {fileID: 164872, guid: dea3549621b21ab479cb6de35b35ce4f, type: 3}
-    PreviewPrefab: {fileID: 164872, guid: 7a7abbfb8e95fa24db331bb51fa60ef9, type: 3}
-  - craftName: wall_A
-    prefab: {fileID: 129780, guid: 86cc3deb390390d4e9e45f9fdaedbd37, type: 3}
-    PreviewPrefab: {fileID: 129780, guid: 945287c02701e2e4a9dcc73d1030ca5b, type: 3}
   tf_Player: {fileID: 963194228}
   layerMask:
     serializedVersion: 2
