@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BuildManager : MonoBehaviour
 {
     private bool isPreviewActivated = false; // 미리 보기 활성화 상태
     private GameObject Preview; // 미리 보기 프리팹을 담을 변수
     private GameObject Prefab; // 실제 생성될 프리팹을 담을 변수 
-
+    private bool CanBulid;
     [SerializeField]
     private Dictionary<string, GameObject> structure;
 
@@ -44,7 +45,25 @@ public class BuildManager : MonoBehaviour
             structure.Add(gameObject.name, gameObject);
         }
     }
-
+    public void OnBuildInput(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            if (!CanBulid)
+            {
+                CanBulid = true;
+                UIManager.instance.Bulid();
+            }
+            else
+            {
+                CanBulid = false;
+                Cancel();
+                UIManager.instance.Bulid();
+            }
+                
+           
+        }
+    }
     public void PreviewActive(string _structureName)
     {
         Preview = Instantiate(structure[_structureName + "_Preview"], tf_Player.position + tf_Player.forward, Quaternion.identity);
@@ -54,13 +73,13 @@ public class BuildManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad0) && !isPreviewActivated)
+        if (Input.GetKeyDown(KeyCode.Keypad0) && !isPreviewActivated && CanBulid)
             PreviewActive("Floor");
 
-        if (Input.GetKeyDown(KeyCode.Keypad1) && !isPreviewActivated)
+        if (Input.GetKeyDown(KeyCode.Keypad1) && !isPreviewActivated && CanBulid)
             PreviewActive("Wall");
 
-        if (Input.GetKeyDown(KeyCode.Escape) && isPreviewActivated)
+        if (Input.GetKeyDown(KeyCode.Escape) && isPreviewActivated && CanBulid)
             Cancel();
 
         if (isPreviewActivated)
@@ -154,5 +173,6 @@ public class BuildManager : MonoBehaviour
 
         Preview = null;
         Prefab = null;
+
     }
 }

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public GameObject InvenHud;//E버튼 입력시 생기는 모든 개체
     public GameObject itemInfo;//아이템정보
     public GameObject prodInfo;//제작정보
+    public GameObject bulidInfo;//설치
     private void Awake()
     {
         instance = this;
@@ -22,10 +23,15 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         ShowUI(InvenHud);
+        ShowUI(bulidInfo);
     }
     public void Map()
     {
         ShowUI(map);
+    }
+    public void Bulid()
+    {
+        ShowUI(bulidInfo);
     }
     public void ShowItemInfo()
     {
