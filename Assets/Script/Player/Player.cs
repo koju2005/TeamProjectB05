@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
             dir /= 2;
         }
         _rigidbody.velocity = dir;
-
+        
 
     }
     void CameraLook()
@@ -206,7 +206,6 @@ public class Player : MonoBehaviour
             animator.SetBool("Crouch", false);
         }
     }
-
     private bool IsGrounded()
     {
         Ray[] rays = new Ray[4]
