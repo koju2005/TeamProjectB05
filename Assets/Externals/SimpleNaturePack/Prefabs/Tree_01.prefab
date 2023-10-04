@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2016627034897836496}
   - component: {fileID: 23749049394716748}
   - component: {fileID: 804206825550485546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tree_01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2222111361405018444}
   - component: {fileID: 230860312991076117}
-  m_Layer: 0
+  - component: {fileID: 7547583519467066603}
+  - component: {fileID: 4019402048493041401}
+  - component: {fileID: 1656084251126612962}
+  m_Layer: 9
   m_Name: Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,6 +143,58 @@ LODGroup:
     renderers:
     - renderer: {fileID: 804206825550485546}
   m_Enabled: 1
+--- !u!208 &7547583519467066603
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222111361404534124}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!65 &4019402048493041401
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222111361404534124}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 6, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1656084251126612962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222111361404534124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9331426d4a89a49bb1fca5269355cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToGive: {fileID: 11400000, guid: 9b9f0a5bbb4b4ec4fb405347437ccb37, type: 2}
+  quantityPerHit: 5
+  capacity: 1
 --- !u!1 &7155140798900432468
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +206,7 @@ GameObject:
   - component: {fileID: 6391492409923566826}
   - component: {fileID: 1255735844759439003}
   - component: {fileID: 5708200766736619226}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tree_01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
