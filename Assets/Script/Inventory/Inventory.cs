@@ -234,5 +234,12 @@ public class Inventory : IItemContainer
                 isStack = true;
             }
         }
+        if (isStack || (!isEmpty))
+        {
+            UpdateCursor();
+            _inventory[_cursor].itemObj = new ItemObject(item);
+            _inventory[_cursor].quantity = 1;
+            _size++;
+        }
     }
 }
