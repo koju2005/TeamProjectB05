@@ -21,6 +21,7 @@ public class ItemObject : MonoBehaviour, IInteractable
         }
         else
         Player.instance.Inventory.AddItem(this);
+        UIManager.instance.quickslot.GetComponent<InventoryUI>().UpdateItem();
         //Destroy(gameObject);
     }
 
