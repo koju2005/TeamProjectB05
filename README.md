@@ -68,7 +68,7 @@ https://www.figma.com/file/vjdwOTuufkE4VLVbz1SwAi/Untitled?type=design&node-id=0
   - 자원
   - 무기
   - 장비
-  -미니맵
+  - 미니맵
 ### 역할분담
 - 이도현(팀장)
   - 인벤토리
