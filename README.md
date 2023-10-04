@@ -101,6 +101,7 @@ https://www.figma.com/file/vjdwOTuufkE4VLVbz1SwAi/Untitled?type=design&node-id=0
   - 로딩화면
 - 박민호
   - 장비, 아이템 제작 기능
+  - 아이템 데이터
 
 ### 버그 리포트
 - [ ]  9/26
