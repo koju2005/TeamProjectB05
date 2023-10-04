@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Resource : MonoBehaviour
 {
-    // public ItemData itemToGive;
+    public ItemData itemToGive;
     public int quantityPerHit;
     public int capacity;
 
@@ -15,7 +15,7 @@ public class Resource : MonoBehaviour
         {
             if(capacity<=0) { break; }
             capacity -= 1;
-            //Instantiate(itemToGive.dropPrefab, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
+            Instantiate(itemToGive.dropPrefab, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
         }
         if (capacity <= 0)
             Destroy(gameObject);
