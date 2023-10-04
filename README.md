@@ -68,13 +68,14 @@ https://www.figma.com/file/vjdwOTuufkE4VLVbz1SwAi/Untitled?type=design&node-id=0
   - 자원
   - 무기
   - 장비
-
+미니맵
 ### 역할분담
 - 이도현(팀장)
   - 인벤토리
 - 김강현
   - UI / 플레이어, 아이템
   - 플레이어 - 플레이어 이동 /점프 /체력/스태미나/배고픔
+  - 미니맵
 - 김경환
   - 건축
     - 아이템으로 만들어서 배치
